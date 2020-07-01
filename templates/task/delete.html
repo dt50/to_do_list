@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,11 +9,21 @@
 
 </head>
 <body>
-    <h1>Вы уверены что хотите удалить {{ task }}?</h1>
-    <form method="post">
-        {% csrf_token %}
-        <input type="submit" name="Confirm">
-    </form>
-    <a href="{% url 'task' %}">Cancel</a>
+    <div class="header">
+          <a href="{% url 'task' %}" class="logo">ToDo list</a>
+          <div class="header-right">
+            <a class="active" href="{% url 'task' %}">Home</a>
+            <a href="#contact">Register</a>
+            <a href="#about">Login</a>
+          </div>
+        </div>
+    <div class="center-column">
+        <h1>Вы уверены что хотите удалить '{{ task }}'?</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-sm btn-info">
+            <a href="{% url 'task' %}">Cancel</a>
+        </form>
+    </div>
 </body>
 </html>
