@@ -1,22 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-
-</head>
-<body>
-    <div class="header">
-          <a href="{% url 'task' %}" class="logo">ToDo list</a>
-          <div class="header-right">
-            <a class="active" href="{% url 'task' %}">Home</a>
-            <a href="#contact">Register</a>
-            <a href="#about">Login</a>
-          </div>
-        </div>
+{% extends 'task/main.html' %}
+{% block content %}
     <div class="center-column">
         <h1>Вы уверены что хотите удалить '{{ task }}'?</h1>
         <form method="post">
@@ -25,5 +8,4 @@
             <a href="{% url 'task' %}">Cancel</a>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}

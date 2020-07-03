@@ -2,10 +2,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="center-column">
-        <form method="post">
+        <input method="post">
             {% csrf_token %}
             {{ form|crispy }}
-            <input class="btn btn-info" type='submit'>
+            <input class="btn btn-info" type='submit'>Подтвердить</input>
         </form>
     </div>
 {% endblock %}

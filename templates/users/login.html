@@ -1,10 +1,10 @@
 {% extends 'task/main.html' %}
-{% load crispy_forms_tags %}
 {% block content %}
     <div class="center-column">
         <form method="post">
             {% csrf_token %}
-            {{ form|crispy }}
+            <p>Email<input type='email' name='email' placeholder="Enter email"></p>
+            <p>Password<input type='password' name='password' placeholder="Password"></p>
             <input class="btn btn-info" type='submit'>
         </form>
     </div>

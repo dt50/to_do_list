@@ -1,56 +1,31 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Task</title>
+{% extends 'task/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="center-column">
 
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <div class="header">
-      <a href="{% url 'task' %}" class="logo">ToDo list</a>
-      <div class="header-right">
-        <a class="active" href="{% url 'task' %}">Home</a>
-        <a href="{% url 'registration' %}">Register</a>
-        <a href="#about">Login</a>
-      </div>
-    </div>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-success">
-                {{ message }}
+    <form method="post">
+        {{ form|crispy }}
+        <input class="btn btn-info" type='submit' name="Create task">
+        {% csrf_token %}
+    </form>
+
+    <div class="todo-list">
+        {% for task in tasks %}
+            <div class="item-row">
+                {% if task.completed == 0 %}
+                    <span>
+                        {{ task }}
+                        <strong>{{ task.date }}</strong>
+                    </span>
+                    <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+                {% else %}
+                    <strike>{{ task }}</strike>
+                    <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Update</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
+                {% endif %}
             </div>
         {% endfor %}
-    {% endif %}
-    <div class="center-column">
-
-        <form method="post">
-            {{ form.as_p }}
-            <input class="btn btn-info" type='submit' name="Create task">
-            {% csrf_token %}
-        </form>
-
-        <div class="todo-list">
-            {% for task in tasks %}
-                <div class="item-row">
-                    {% if task.completed == 0 %}
-                        <span>
-                            {{ task }}
-                            <strong>{{ task.date }}</strong>
-                        </span>
-                        <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Update</a>
-                        <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
-                    {% else %}
-                        <strike>{{ task }}</strike>
-                        <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Update</a>
-                        <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

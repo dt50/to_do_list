@@ -74,6 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'to_do_list.wsgi.application'
 
+AUTH_USER_MODEL = 'users.MyUser'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
