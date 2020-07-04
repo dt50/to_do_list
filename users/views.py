@@ -8,7 +8,6 @@ from django.contrib import messages
 from . import forms
 
 
-
 def registration(request):
     form = forms.CustomUserCreationForm()
 
@@ -17,7 +16,7 @@ def registration(request):
         if form.is_valid():
             form.save()
             messages.success(request, f'Успешная регистрация пользователя {form.username}')
-        return redirect('task')
+        return redirect('task:task')
 
     return render(request, 'users/register.html', context={'form': form})
 
@@ -32,7 +31,7 @@ def Login(request):
         if user is not None:
             login(request, user)
             messages.success(request, f'Пользователь с почтой {request.POST.get("email")} успешно авторизировался')
-            return redirect('task')
+            return redirect('task:task')
         else:
             messages.error(request, f'Не удалось аторизироваться, вы ввели неправильные данные!')
     return render(request, 'users/login.html')
@@ -45,7 +44,7 @@ def Change(request):
         form = forms.CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-        return redirect('task')
+        return redirect('task:task')
     return render(request, 'users/change.html', context={'form': form})
 
 
@@ -57,11 +56,11 @@ def Change_p(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-        return redirect('task')
+        return redirect('task:task')
     return render(request, 'users/change_password.html', context={'form': form})
 
 
 @login_required
 def Logout(request):
     logout(request)
-    return redirect('task')
+    return redirect('task:task')

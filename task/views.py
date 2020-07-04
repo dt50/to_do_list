@@ -16,7 +16,7 @@ def task(request):
             obj.user = request.user
             obj.save()
             messages.success(request, 'Your task created successfully')
-        return redirect('/task')
+        return redirect('task:task')
     return render(request, 'task/task.html', {'form': form, 'tasks': tasks})
 
 
@@ -28,7 +28,7 @@ def update(request, pk):
         form = forms.TaskFormUpdate(request.POST, instance=task)
         if form.is_valid():
             form.save()
-        return redirect('/task')
+        return redirect('task:task')
 
     return render(request, 'task/update.html', context={'form': form})
 
@@ -38,5 +38,5 @@ def delete(request, pk):
     task = models.Task.objects.get(id=pk)
     if request.method == 'POST':
         task.delete()
-        return redirect('/task')
+        return redirect('task:task')
     return render(request, 'task/delete.html', context={'task': task})

@@ -30,6 +30,7 @@ class CustomUserCreationForm(forms.ModelForm):
         model = MyUser
         fields = ('email', 'username', 'telegram')
 
+
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:
         model = MyUser

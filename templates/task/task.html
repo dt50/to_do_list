@@ -1,31 +1,31 @@
 {% extends 'task/main.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="center-column">
+    <div class="center-column">
 
-    <form method="post">
-        {{ form|crispy }}
-        <input class="btn btn-info" type='submit' name="Create task">
-        {% csrf_token %}
-    </form>
+        <form method="post">
+            {{ form|crispy }}
+            <input class="btn btn-info" type='submit' name="Create task">
+            {% csrf_token %}
+        </form>
 
-    <div class="todo-list">
-        {% for task in tasks %}
-            <div class="item-row">
-                {% if task.completed == 0 %}
-                    <span>
-                        {{ task }}
-                        <strong>{{ task.date }}</strong>
-                    </span>
-                    <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Update</a>
-                    <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
-                {% else %}
-                    <strike>{{ task }}</strike>
-                    <a class="btn btn-sm btn-info" href="{% url 'update' task.id %}">Update</a>
-                    <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
-                {% endif %}
-            </div>
-        {% endfor %}
+        <div class="todo-list">
+            {% for task in tasks %}
+                <div class="item-row">
+                    {% if task.completed == 0 %}
+                        <span>
+                            {{ task }}<br>
+                            <strong>{{ task.date }}</strong>
+                        </span>
+                        <a class="btn btn-sm btn-info" href="{% url 'task:update' task.id %}">Update</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'task:delete' task.id %}">Delete</a>
+                    {% else %}
+                        <strong><strike>{{ task }}</strike></strong>
+                        <a class="btn btn-sm btn-info" href="{% url 'task:update' task.id %}">Update</a>
+                        <a class="btn btn-sm btn-danger" href="{% url 'task:delete' task.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 {% endblock %}

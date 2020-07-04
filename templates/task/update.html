@@ -6,6 +6,7 @@
             {% csrf_token %}
             {{ form|crispy }}
             <input type="submit" class="btn btn-sm btn-info" name="Update ToDo">
+            <a class="btn btn-sm btn-danger" href="{% url 'task:task' %}">Cancel</a>
         </form>
     </div>
 {% endblock %}

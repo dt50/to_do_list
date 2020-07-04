@@ -108,7 +108,9 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'api.serializers.CustomUserCreateSerializer',
         'user': 'api.serializers.CustomUserCreateSerializer',
-    }
+    },
+    'user': ['djoser.permissions.Admin']
+
 }
 
 # Password validation
