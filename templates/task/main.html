@@ -14,9 +14,9 @@
     <div class="header">
       <a href="{% url 'task' %}" class="logo">ToDo list</a>
       <div class="header-right">
-        <a class="active" href="{% url 'task' %}">Home</a>
+        <a href="{% url 'task' %}">Home</a>
         {% if user.is_authenticated %}
-            <a>{{ user.username }}</a>
+            <a href="{% url 'task' %}">{{ user.username }}</a>
             <a href="{% url 'logout' %}">Logout</a>
         {% else %}
             <a href="{% url 'reg' %}">Register</a>

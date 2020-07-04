@@ -5,7 +5,7 @@
         <form method="post">
             {% csrf_token %}
             <input type="submit" class="btn btn-sm btn-info">
-            <a href="{% url 'task' %}">Cancel</a>
+            <a class="btn btn-sm btn-danger" href="{% url 'task' %}">Cancel</a>
         </form>
     </div>
 {% endblock %}
