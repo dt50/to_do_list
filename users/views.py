@@ -14,8 +14,9 @@ def registration(request):
     if request.method == 'POST':
         form = forms.CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, f'Успешная регистрация пользователя {form.username}')
+            obj = form.save()
+            messages.success(request, f'Успешная регистрация пользователя {obj.username}')
+
         return redirect('task:task')
 
     return render(request, 'users/register.html', context={'form': form})
@@ -39,7 +40,7 @@ def Login(request):
 
 @login_required
 def Change(request):
-    form = forms.CustomUserChangeForm()
+    form = forms.CustomUserChangeForm(instance=request.user)
     if request.method == 'POST':
         form = forms.CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -56,6 +57,7 @@ def Change_p(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Успешная смена пароля')
         return redirect('task:task')
     return render(request, 'users/change_password.html', context={'form': form})
 
