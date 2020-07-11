@@ -65,3 +65,13 @@ input::placeholder {
     box-shadow:  5px 5px 11px #4e6f91,
              -5px -5px 11px #78a9df;
 }
+
+.item-delete{
+    background-color: #638cb8;
+    color: black;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow:  8px 8px 16px #3a536d,
+             -8px -8px 16px #8cc5ff;
+}

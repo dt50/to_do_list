@@ -1,7 +1,9 @@
 {% extends 'task/main.html' %}
 {% block content %}
     <div class="center-column">
-        <h1>Вы уверены что хотите удалить '{{ task }}'?</h1>
+        <div class="item-delete">
+            <h1>Вы уверены что хотите удалить '{{ task }}'?</h1>
+        </div>
         <form method="post">
             {% csrf_token %}
             <input type="submit" class="btn btn-sm btn-info">
