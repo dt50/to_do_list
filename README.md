@@ -22,7 +22,9 @@ python3 manage.py runserver
 ## URLS
 
 /task/ - Create/Delete/Change users tasks
+
 /user/ - Create user account or change info about him(login, password) 
+
 /api/ - Api for integrate server with other program
 
 ## What's Included?
