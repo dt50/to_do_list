@@ -1,5 +1,11 @@
 {% extends 'task/main.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
+
+{% block extra_js %}
+    <script src="{% static "dates_picker.js" %}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="center-column">
 
@@ -8,6 +14,11 @@
             <input class="btn btn-info" type='submit' name="Create task">
             {% csrf_token %}
         </form>
+
+        <input type="text" name="daterange" value="09/01/2020 - 09/30/2020" />
+
+
+
 
         <div class="todo-list">
             {% for task in tasks %}
