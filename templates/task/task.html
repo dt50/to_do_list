@@ -25,7 +25,7 @@
                 <div class="item-row">
                     {% if task.completed == 0 %}
                         <span>
-                            {{ task }}<br>
+                            {{ task }} <a href="{% url 'task:tag' task.tag %}" class="text-dark">{{ task.tag }}</a> <br>
                             <strong>{{ task.date }}</strong>
                         </span>
                         <a class="btn btn-sm btn-info" href="{% url 'task:update' task.id %}">Update</a>

@@ -18,7 +18,6 @@ def task(request, start_date=None, end_date=None):
 
     if request.method == 'POST':
         task_form = forms.TaskForm(request.POST)
-
         if task_form.is_valid():
             obj = task_form.save(commit=False)
             obj.user = request.user
@@ -28,6 +27,16 @@ def task(request, start_date=None, end_date=None):
         return redirect('task:task')
 
     return render(request, 'task/task.html', {'form': task_form, 'tasks': tasks})
+
+
+@login_required(login_url='/user/login/')
+def tag_filter(request, tag):
+    task_form = forms.TaskForm()
+
+    tag_object = models.Tag.objects.get(tag=tag)
+    tasks_tag = models.Task.objects.all().filter(tag=tag_object)
+
+    return render(request, 'task/task.html', {'form': task_form, 'tasks': tasks_tag})
 
 
 @login_required(login_url='/user/login/')
