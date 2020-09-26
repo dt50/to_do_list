@@ -3,5 +3,6 @@
 /users/migrations/
 /task/migrations/
 /api/migrations/
+/bot/migrations/
 *.xml
 *.iml

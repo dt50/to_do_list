@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'task.apps.TaskConfig',
     'users.apps.UsersConfig',
     'api.apps.ApiConfig',
+    'bot.apps.BotConfig',
 
     'crispy_forms',
     'rest_framework',
