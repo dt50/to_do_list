@@ -4,5 +4,6 @@
 /task/migrations/
 /api/migrations/
 /bot/migrations/
+/.conf
 *.xml
 *.iml
