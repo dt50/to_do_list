@@ -31,7 +31,11 @@ class Command(BaseCommand):
             bot.register_next_step_handler(msg, auth)
 
         def auth(message):
-            log_conditionals = helper.parse_message(message)
+            text = str(message.text).split(' ')
+            log_conditionals = {
+                'email': text[0],
+                'password': text[1]
+            }
 
             obj, flag = UserTg.objects.get_or_create(
                 external_id=message.chat.id,
